@@ -261,33 +261,41 @@ def assembly_to_binary(l,c):
 
 
 code=[]
+while True :
+    try:
+        i=input()
+       
+        if len(i)!=0:
+             code.append(i)
+     except EOFError:
+        break
+    
 
 
 
 
 
 
-Filename = input("Enter name of input file: ")
-inputFile = open(Filename, "r")
 
 
-for command in inputFile:
+
+for command in code:
     if command != "hlt":
         
         command=command[:-1]
-    code.append(command)
+   
 
 
 
 
-inputFile = open(Filename, "r")
-for command in inputFile:
-    sys.stdout.write(assembly_to_binary(command, code))
-    sys.stdout.write("\n")
+
+for command in code:
+     print(assembly_to_binary(command, code))
+    
     
     if Error == 1:
         temp=assembly_to_binary(command, code)
-        sys.stdout.write(temp)
+        print(temp)
         
         
         
