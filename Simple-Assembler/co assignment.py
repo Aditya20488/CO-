@@ -1,4 +1,5 @@
-
+import sys
+from sys import stdin
 global var_list
 var_list=[]
 
@@ -258,21 +259,19 @@ def assembly_to_binary(l,c):
     
     
 
+
 code=[]
 
 
-Filename = input("Enter name of input file: ")
-inputFile = open(Filename, "r")
-outputFileName="z.txt"
-outputFile = open(outputFileName, "w")
 
 
 
-for command in inputFile:
-    if command != "hlt":
-        
-        command=command[:-1]
+
+for command in stdin:
+    
     code.append(command)
+    if command== EOFError:
+        break
     
 if code[0][0:3] == "var": 
     
@@ -287,13 +286,13 @@ for i in code:
         Error=1
         temp="Variables not declared in the beginning"
 
-inputFile = open(Filename, "r")
-for command in inputFile:
-    print(assembly_to_binary(command, code))
+
+for command in code:
+    sys.stdout.write(assembly_to_binary(command, code))
+    sys.stdout.write(" \n")
     
     if Error == 1:
         temp=assembly_to_binary(command, code)
-        
-        outputFile.write (temp)
+        sys.stdout.write(temp)
         
         break
