@@ -1,5 +1,5 @@
 import sys
-from sys import stdin
+
 global var_list
 var_list=[]
 
@@ -267,32 +267,28 @@ code=[]
 
 
 
-for command in stdin:
-    
+Filename = input("Enter name of input file: ")
+inputFile = open(Filename, "r")
+
+
+for command in inputFile:
+    if command != "hlt":
+        
+        command=command[:-1]
     code.append(command)
-    if command== EOFError:
-        break
-    
-if code[0][0:3] == "var": 
-    
-    while code[0][0:3] == "var":
-        var_list.append(code[0][4:])
-        del code[0];
 
 
 
-for i in code:
-    if code[code.index(i)][0:3]=="var":
-        Error=1
-        temp="Variables not declared in the beginning"
 
-
-for command in code:
+inputFile = open(Filename, "r")
+for command in inputFile:
     sys.stdout.write(assembly_to_binary(command, code))
-    sys.stdout.write(" \n")
+    sys.stdout.write("\n")
     
     if Error == 1:
         temp=assembly_to_binary(command, code)
         sys.stdout.write(temp)
+        
+        
         
         break
